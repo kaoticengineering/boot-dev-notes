@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PyNotesRev3.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<style>
+  html, body {
+    background: #111827 !important;
+    color: #e5e7eb !important;
+  }
+
+  a {
+    color: #93c5fd;
+  }
+
+  pre,
+  .vscode-light pre,
+  .vscode-dark pre,
+  .vscode-high-contrast pre {
+    background: #1f2937 !important;
+    border-color: #374151 !important;
+    color: #e5e7eb !important;
+  }
+
+  .hljs,
+  pre code {
+    color: #e5e7eb !important;
+  }
+
+  blockquote {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: #60a5fa !important;
+  }
+
+  h1, hr,
+  table > thead > tr > th,
+  table > tbody > tr + tr > td {
+    border-color: rgba(229, 231, 235, 0.25) !important;
+  }
+
+  :not(pre):not(.hljs) > code {
+    background: rgba(255, 255, 255, 0.08);
+    color: #f5d08a !important;
+    padding: 0.1em 0.3em;
+    border-radius: 4px;
+  }
+</style>
+
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="pynotes-%F0%9F%90%8D">PyNotes 🐍</h1>
+<blockquote>
+<p>Personal Python reference notes — built alongside the boot.dev curriculum.</p>
+</blockquote>
+<hr>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#python-fundamentals">Python Fundamentals</a>
+<ul>
+<li><a href="#syntax--style">Syntax &amp; Style</a></li>
+<li><a href="#variables--types">Variables &amp; Types</a></li>
+<li><a href="#strings--printing">Strings &amp; Printing</a></li>
+<li><a href="#math--operators">Math &amp; Operators</a></li>
+<li><a href="#logic--comparison">Logic &amp; Comparison</a></li>
+<li><a href="#control-flow">Control Flow</a></li>
+<li><a href="#loops">Loops</a></li>
+<li><a href="#functions">Functions</a></li>
+<li><a href="#scope">Scope</a></li>
+</ul>
+</li>
+<li><a href="#lists">Lists</a></li>
+<li><a href="#tuples">Tuples</a></li>
+<li><a href="#strings--useful-methods">Strings — Useful Methods</a></li>
+<li><a href="#dictionaries">Dictionaries</a></li>
+<li><a href="#sets">Sets</a></li>
+<li><a href="#errors--exceptions">Errors &amp; Exceptions</a></li>
+<li><a href="#object-oriented-programming">Object-Oriented Programming</a></li>
+<li><a href="#inheritance">Inheritance</a></li>
+<li><a href="#polymorphism--method-overriding">Polymorphism &amp; Operator Overloading</a> ← <em>currently here</em></li>
+</ol>
+<hr>
+<h2 id="python-fundamentals">Python Fundamentals</h2>
+<h3 id="syntax--style">Syntax &amp; Style</h3>
+<ul>
+<li><strong>Indentation matters.</strong> Python uses whitespace to define code blocks — unlike JS or C++. Mixing tabs and spaces will cause errors.</li>
+<li><strong>Naming convention:</strong> use <code>snake_case</code> for variables and functions (e.g. <code>player_health</code>, <code>calculate_damage</code>).</li>
+<li><strong>Comments:</strong><pre class="hljs"><code><div><span class="hljs-comment"># Single-line comment</span>
+
+<span class="hljs-string">"""
+Multi-line comment (technically a string literal,
+but commonly used as a docstring or block comment)
+"""</span>
+</div></code></pre>
+</li>
+</ul>
+<hr>
+<h3 id="variables--types">Variables &amp; Types</h3>
+<p>Variables are declared without a keyword — just assign directly:</p>
+<pre class="hljs"><code><div>sword_damage = <span class="hljs-number">10</span>
+player_name = <span class="hljs-string">"Arthas"</span>
+is_alive = <span class="hljs-literal">True</span>
+empty_slot = <span class="hljs-literal">None</span>   <span class="hljs-comment"># NoneType — represents an intentionally empty/absent value</span>
+</div></code></pre>
+<p><strong>Common types:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int</code></td>
+<td><code>42</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td><code>3.14</code></td>
+</tr>
+<tr>
+<td><code>str</code></td>
+<td><code>&quot;hello&quot;</code></td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td><code>True</code> / <code>False</code></td>
+</tr>
+<tr>
+<td><code>NoneType</code></td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<p>Check a variable's type with <code>type()</code>:</p>
+<pre class="hljs"><code><div>type(sword_damage)   <span class="hljs-comment"># &lt;class 'int'&gt;</span>
+</div></code></pre>
+<hr>
+<h3 id="strings--printing">Strings &amp; Printing</h3>
+<p><strong>f-strings</strong> are the cleanest way to embed values in strings:</p>
+<pre class="hljs"><code><div>stat = <span class="hljs-number">42</span>
+print(<span class="hljs-string">f"The value of stat is: <span class="hljs-subst">{stat}</span>"</span>)
+</div></code></pre>
+<p><strong>Concatenation</strong> with <code>+</code> (types must match — can't mix str and int directly):</p>
+<pre class="hljs"><code><div>print(<span class="hljs-string">"Player Health: "</span> + str(player_health) + <span class="hljs-string">" HP"</span>)
+</div></code></pre>
+<hr>
+<h3 id="math--operators">Math &amp; Operators</h3>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Description</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>+</code> <code>-</code> <code>*</code> <code>/</code></td>
+<td>Standard arithmetic</td>
+<td><code>10 / 3</code></td>
+<td><code>3.333...</code></td>
+</tr>
+<tr>
+<td><code>//</code></td>
+<td>Floor division (rounds down)</td>
+<td><code>7 // 3</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>%</code></td>
+<td>Modulo (remainder)</td>
+<td><code>7 % 3</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>**</code></td>
+<td>Exponent</td>
+<td><code>3 ** 2</code></td>
+<td><code>9</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Assignment shorthands</strong> (<code>++</code>/<code>--</code> do NOT exist in Python):</p>
+<pre class="hljs"><code><div>health += <span class="hljs-number">10</span>    <span class="hljs-comment"># add</span>
+health -= <span class="hljs-number">5</span>     <span class="hljs-comment"># subtract</span>
+health *= <span class="hljs-number">2</span>     <span class="hljs-comment"># multiply</span>
+health /= <span class="hljs-number">2</span>     <span class="hljs-comment"># divide</span>
+</div></code></pre>
+<p><strong>Readability tricks for big numbers:</strong></p>
+<pre class="hljs"><code><div>big_number = <span class="hljs-number">10</span>_000_000      <span class="hljs-comment"># underscore as thousands separator</span>
+sci_notation = <span class="hljs-number">1.024e18</span>      <span class="hljs-comment"># scientific notation</span>
+</div></code></pre>
+<p><strong>Binary / Bitwise:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Prefix binary literals with 0b</span>
+can_delete_mask = <span class="hljs-number">0b0001</span>
+
+<span class="hljs-number">0b0001</span> &amp; <span class="hljs-number">0b1001</span>   <span class="hljs-comment"># AND  → 0001 (both bits must be 1)</span>
+<span class="hljs-number">0b0001</span> | <span class="hljs-number">0b1001</span>   <span class="hljs-comment"># OR   → 1001 (either bit can be 1)</span>
+
+<span class="hljs-comment"># Convert binary string to int (base 2)</span>
+int(binary_variable, <span class="hljs-number">2</span>)
+</div></code></pre>
+<hr>
+<h3 id="logic--comparison">Logic &amp; Comparison</h3>
+<p><strong>Comparison operators:</strong> <code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code> <code>==</code> <code>!=</code></p>
+<p><strong>Logical operators</strong> (Python uses words, not symbols):</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> health &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> mana &gt; <span class="hljs-number">0</span>:   <span class="hljs-comment"># both true</span>
+<span class="hljs-keyword">if</span> health &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> mana &gt; <span class="hljs-number">0</span>:    <span class="hljs-comment"># at least one true</span>
+<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> is_dead:                <span class="hljs-comment"># negation</span>
+</div></code></pre>
+<blockquote>
+<p>Contrast with JS/C where you'd write <code>&amp;&amp;</code>, <code>||</code>, <code>!</code></p>
+</blockquote>
+<hr>
+<h3 id="control-flow">Control Flow</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> health &lt;= <span class="hljs-number">0</span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"dead"</span>
+<span class="hljs-keyword">elif</span> health &lt;= <span class="hljs-number">5</span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"injured"</span>
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"healthy"</span>
+</div></code></pre>
+<hr>
+<h3 id="loops">Loops</h3>
+<p><strong><code>for</code> loop with <code>range()</code>:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, <span class="hljs-number">100</span>):       <span class="hljs-comment"># 0 up to (not including) 100</span>
+    print(i)
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>, <span class="hljs-number">0</span>, <span class="hljs-number">-1</span>):    <span class="hljs-comment"># countdown — third arg is step</span>
+    print(i)
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2</span>):     <span class="hljs-comment"># step by 2</span>
+    print(i)
+</div></code></pre>
+<p><strong><code>while</code> loop:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">while</span> current_health &lt; max_health <span class="hljs-keyword">and</span> enemy_distance &gt; <span class="hljs-number">3</span>:
+    current_health += <span class="hljs-number">1</span>
+    enemy_distance -= <span class="hljs-number">2</span>
+</div></code></pre>
+<p><strong>Loop control:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">continue</span>   <span class="hljs-comment"># skip to next iteration</span>
+<span class="hljs-keyword">break</span>      <span class="hljs-comment"># exit the loop entirely</span>
+</div></code></pre>
+<hr>
+<h3 id="functions">Functions</h3>
+<p>Defined with the <code>def</code> keyword. Must be <strong>defined before they are called</strong> — unlike JS/C++, Python does not hoist functions.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">area_of_circle</span><span class="hljs-params">(radius)</span>:</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">3.14</span> * radius * radius
+</div></code></pre>
+<p><strong>Multiple return values</strong> (returns a tuple):</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_stats</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">return</span> damage, mana        <span class="hljs-comment"># unpack with: dmg, mp = get_stats()</span>
+</div></code></pre>
+<p><strong>Default parameter values:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">take_damage</span><span class="hljs-params">(health, armor=<span class="hljs-number">0</span>)</span>:</span>   <span class="hljs-comment"># armor defaults to 0 if not passed</span>
+    <span class="hljs-keyword">return</span> health - max(<span class="hljs-number">0</span>, damage - armor)
+</div></code></pre>
+<hr>
+<h3 id="scope">Scope</h3>
+<p>Variables defined outside a function are in <strong>global scope</strong> and accessible inside functions — but this can get messy. Best practice: pass values in explicitly. Globals are fine for true constants.</p>
+<pre class="hljs"><code><div>PLAYER_LEVEL = <span class="hljs-number">4</span>   <span class="hljs-comment"># constant — ALL_CAPS is the convention for constants</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">calculate_health</span><span class="hljs-params">(modifier)</span>:</span>
+    <span class="hljs-keyword">return</span> PLAYER_LEVEL * modifier  <span class="hljs-comment"># readable here, but prefer passing it in</span>
+</div></code></pre>
+<hr>
+<h2 id="lists">Lists</h2>
+<p>Ordered, mutable (changeable) collections. Indexed from 0.</p>
+<pre class="hljs"><code><div>inv_list = [<span class="hljs-string">"Healing Potion"</span>, <span class="hljs-string">"Leather Scraps"</span>, <span class="hljs-string">"Iron Helmet"</span>, <span class="hljs-string">"Shortsword"</span>]
+
+inv_list[<span class="hljs-number">0</span>]       <span class="hljs-comment"># "Healing Potion"</span>
+len(inv_list)     <span class="hljs-comment"># 4</span>
+
+inv_list.append(<span class="hljs-string">"Shield"</span>)   <span class="hljs-comment"># add to end</span>
+inv_list.pop()               <span class="hljs-comment"># remove &amp; return last item</span>
+inv_list.pop(<span class="hljs-number">0</span>)              <span class="hljs-comment"># remove &amp; return item at index 0</span>
+
+<span class="hljs-keyword">del</span> inv_list[<span class="hljs-number">0</span>]              <span class="hljs-comment"># delete by index (no return)</span>
+<span class="hljs-keyword">del</span> inv_list[<span class="hljs-number">-2</span>:]            <span class="hljs-comment"># delete a slice</span>
+</div></code></pre>
+<p><strong>Iterating without indexes:</strong></p>
+<pre class="hljs"><code><div>trees = [<span class="hljs-string">'oak'</span>, <span class="hljs-string">'pine'</span>, <span class="hljs-string">'maple'</span>]
+<span class="hljs-keyword">for</span> tree <span class="hljs-keyword">in</span> trees:
+    print(tree)
+</div></code></pre>
+<p><strong>Slicing</strong> — <code>list[start:end:step]</code></p>
+<ul>
+<li>Negative indexes count from the end: <code>-1</code> = last item, <code>-2</code> = second to last</li>
+</ul>
+<pre class="hljs"><code><div>champions[<span class="hljs-number">2</span>:]       <span class="hljs-comment"># from index 2 to end</span>
+champions[:<span class="hljs-number">-1</span>]      <span class="hljs-comment"># from start up to (not including) last item</span>
+champions[<span class="hljs-number">0</span>::<span class="hljs-number">2</span>]     <span class="hljs-comment"># every other item starting at index 0</span>
+</div></code></pre>
+<p><strong>Combining lists:</strong></p>
+<pre class="hljs"><code><div>fav_items = fav_weapons + fav_armor
+</div></code></pre>
+<p><strong>Membership check:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">return</span> weapon <span class="hljs-keyword">in</span> top_weapons    <span class="hljs-comment"># True or False</span>
+</div></code></pre>
+<hr>
+<h2 id="tuples">Tuples</h2>
+<p>Ordered and <strong>immutable</strong> (can't be changed after creation). Use parentheses instead of brackets.</p>
+<pre class="hljs"><code><div>heroes = [
+    (<span class="hljs-string">"Glorfindel"</span>, <span class="hljs-number">2093</span>, <span class="hljs-literal">True</span>),
+    (<span class="hljs-string">"Gandalf"</span>,    <span class="hljs-number">1054</span>, <span class="hljs-literal">False</span>),
+    (<span class="hljs-string">"Gimli"</span>,       <span class="hljs-number">389</span>, <span class="hljs-literal">False</span>),
+]
+</div></code></pre>
+<p>Good for grouping related values that shouldn't change — like coordinates, RGB colors, or records in a list.</p>
+<hr>
+<h2 id="strings--useful-methods">Strings — Useful Methods</h2>
+<p><strong><code>.join()</code></strong> — glue a list of strings together with a delimiter:</p>
+<pre class="hljs"><code><div>words = [<span class="hljs-string">"hello"</span>, <span class="hljs-string">"there"</span>, <span class="hljs-string">"sam"</span>]
+sentence = <span class="hljs-string">" "</span>.join(words)
+<span class="hljs-comment"># "hello there sam"</span>
+</div></code></pre>
+<p><strong><code>.split()</code></strong> — break a string into a list using a delimiter (defaults to any whitespace):</p>
+<pre class="hljs"><code><div>message = <span class="hljs-string">"hello there sam"</span>
+words = message.split()
+<span class="hljs-comment"># ["hello", "there", "sam"]</span>
+
+csv_line = <span class="hljs-string">"a,b,c"</span>
+parts = csv_line.split(<span class="hljs-string">","</span>)
+<span class="hljs-comment"># ["a", "b", "c"]</span>
+</div></code></pre>
+<hr>
+<h2 id="dictionaries">Dictionaries</h2>
+<p>Store data as <strong>key: value</strong> pairs. Keys must be unique.</p>
+<pre class="hljs"><code><div>car = {
+    <span class="hljs-string">"brand"</span>: <span class="hljs-string">"Toyota"</span>,
+    <span class="hljs-string">"model"</span>: <span class="hljs-string">"Camry"</span>,
+    <span class="hljs-string">"year"</span>: <span class="hljs-number">2019</span>,
+}
+
+<span class="hljs-comment"># Add or update a key</span>
+player[<span class="hljs-string">"coins"</span>] = <span class="hljs-number">0</span>
+player[<span class="hljs-string">"coins"</span>] = <span class="hljs-number">1</span>
+
+<span class="hljs-comment"># Delete a key</span>
+<span class="hljs-keyword">del</span> names_dict[<span class="hljs-string">"joe"</span>]
+
+<span class="hljs-comment"># Check membership</span>
+<span class="hljs-keyword">if</span> <span class="hljs-string">"joe"</span> <span class="hljs-keyword">in</span> names_dict: ...
+</div></code></pre>
+<p><strong>Nested dictionaries:</strong></p>
+<pre class="hljs"><code><div>progress[<span class="hljs-string">"quests"</span>][<span class="hljs-string">"bridge_run"</span>][<span class="hljs-string">"status"</span>]   <span class="hljs-comment"># chain keys to drill down</span>
+</div></code></pre>
+<p><strong>Common pattern — counting with a dict:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">count_enemies</span><span class="hljs-params">(enemy_names)</span>:</span>
+    enemies_dict = {}
+    <span class="hljs-keyword">for</span> enemy_name <span class="hljs-keyword">in</span> enemy_names:
+        <span class="hljs-keyword">if</span> enemy_name <span class="hljs-keyword">in</span> enemies_dict:
+            enemies_dict[enemy_name] += <span class="hljs-number">1</span>
+        <span class="hljs-keyword">else</span>:
+            enemies_dict[enemy_name] = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">return</span> enemies_dict
+</div></code></pre>
+<hr>
+<h2 id="sets">Sets</h2>
+<p>Unordered, <strong>no duplicates</strong>. Great for deduplication and membership checks.</p>
+<pre class="hljs"><code><div>spell_set = set()                          <span class="hljs-comment"># empty set (can't use {} — that's a dict)</span>
+party_spell_set = set(party_spell_list)    <span class="hljs-comment"># convert list → set, drops duplicates</span>
+
+spell_set.add(<span class="hljs-string">"Fireball"</span>)
+spell_set.remove(<span class="hljs-string">"Fireball"</span>)
+
+unique_to_set1 = set1 - set2              <span class="hljs-comment"># set subtraction</span>
+</div></code></pre>
+<hr>
+<h2 id="errors--exceptions">Errors &amp; Exceptions</h2>
+<p><strong>Raising an error:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">"player id not found"</span>)
+</div></code></pre>
+<p><strong>Catching errors:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">try</span>:
+    print(get_player_record(<span class="hljs-number">1</span>))
+<span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+    print(e)
+</div></code></pre>
+<p><strong>Catching specific error types</strong> (more specific first, general last):</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">try</span>:
+    <span class="hljs-number">10</span> / <span class="hljs-number">0</span>
+<span class="hljs-keyword">except</span> ZeroDivisionError:
+    print(<span class="hljs-string">"can't divide by zero"</span>)
+<span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+    print(e)
+</div></code></pre>
+<blockquote>
+<p>Think of <code>except</code> blocks like <code>elif</code> — Python checks them top to bottom and runs the first match. Always put specific exceptions before the generic <code>Exception</code> catch-all.</p>
+</blockquote>
+<hr>
+<h2 id="object-oriented-programming">Object-Oriented Programming</h2>
+<blockquote>
+<p><em>Actively being filled in — currently working through boot.dev's OOP in Python course.</em></p>
+</blockquote>
+<p><strong>Core idea:</strong> organize code around <em>objects</em> — bundles of data (attributes) and behavior (methods) — rather than just loose functions. An <strong>object</strong> is an <em>instance</em> of a <strong>class</strong>. The class is the blueprint; the object is the thing you actually use.</p>
+<h3 id="key-pillars-of-oop">Key Pillars of OOP</h3>
+<ol>
+<li><strong>Encapsulation</strong> — bundling data + behavior together, hiding internal details</li>
+<li><strong>Abstraction</strong> — exposing only what's necessary, hiding complexity</li>
+<li><strong>Inheritance</strong> — child classes inherit and extend parent classes</li>
+<li><strong>Polymorphism</strong> — different objects can share an interface but behave differently</li>
+</ol>
+<p><em>These will be filled out as the course progresses.</em></p>
+<hr>
+<h3 id="defining-a-class">Defining a Class</h3>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Soldier</span>:</span>
+    health = <span class="hljs-number">5</span>
+    armor = <span class="hljs-number">3</span>
+    damage = <span class="hljs-number">2</span>
+</div></code></pre>
+<hr>
+<h3 id="methods--self">Methods &amp; <code>self</code></h3>
+<p>Methods are functions defined inside a class. The first parameter is always <code>self</code> — Python uses it to refer to the specific object the method is being called on.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Wall</span>:</span>
+    armor = <span class="hljs-number">10</span>
+    height = <span class="hljs-number">5</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fortify</span><span class="hljs-params">(self)</span>:</span>
+        self.armor *= <span class="hljs-number">2</span>         <span class="hljs-comment"># modifies THIS wall's armor</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_cost</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> self.armor * self.height    <span class="hljs-comment"># getter pattern</span>
+</div></code></pre>
+<p><strong>Calling a method on an object:</strong></p>
+<pre class="hljs"><code><div>soldier112.take_damage(damage, multiplier)
+</div></code></pre>
+<hr>
+<h3 id="constructors--init">Constructors — <code>__init__</code></h3>
+<p><code>__init__</code> runs automatically when you create a new object. It's how you set each instance's starting values. Methods with double underscores on each side are called <strong>dunder methods</strong> (short for &quot;double underscore&quot;) — more on these later.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Soldier</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, name, armor, num_weapons)</span>:</span>
+        self.name = name
+        self.armor = armor
+        self.num_weapons = num_weapons
+
+soldier_one = Soldier(<span class="hljs-string">"Legolas"</span>, <span class="hljs-number">2</span>, <span class="hljs-number">10</span>)
+</div></code></pre>
+<p>You can also compute values in <code>__init__</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Wall</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, depth, height, width)</span>:</span>
+        self.depth = depth
+        self.height = height
+        self.width = width
+        self.volume = depth * height * width    <span class="hljs-comment"># derived attribute</span>
+</div></code></pre>
+<hr>
+<h3 id="objects-interacting-with-other-objects">Objects Interacting with Other Objects</h3>
+<p>Methods can receive other object instances as parameters — not just primitives like ints or strings. This is how objects collaborate with each other.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Archer</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, name, health, num_arrows)</span>:</span>
+        self.name = name
+        self.health = health
+        self.num_arrows = num_arrows
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">take_hit</span><span class="hljs-params">(self)</span>:</span>
+        self.health -= <span class="hljs-number">1</span>
+        <span class="hljs-keyword">if</span> self.health &lt;= <span class="hljs-number">0</span>:
+            <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">f"<span class="hljs-subst">{self.name}</span> is dead"</span>)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">shoot</span><span class="hljs-params">(self, target)</span>:</span>           <span class="hljs-comment"># target is another Archer instance</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> self.num_arrows:        <span class="hljs-comment"># 0 is falsy — triggers when arrows run out</span>
+            <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">f"<span class="hljs-subst">{self.name}</span> can't shoot"</span>)
+        self.num_arrows -= <span class="hljs-number">1</span>
+        print(<span class="hljs-string">f"<span class="hljs-subst">{self.name}</span> shoots <span class="hljs-subst">{target.name}</span>"</span>)
+        target.take_hit()              <span class="hljs-comment"># call a method on the OTHER object</span>
+</div></code></pre>
+<p>Patterns worth noting:</p>
+<ul>
+<li><strong>Truthiness check:</strong> <code>if not self.num_arrows</code> is Pythonic shorthand for <code>if self.num_arrows == 0</code>. In Python, <code>0</code>, <code>None</code>, <code>&quot;&quot;</code>, and <code>[]</code> are all <em>falsy</em> — you can use them directly in conditionals without explicit comparison.</li>
+<li><strong><code>&lt;= 0</code> vs <code>== 0</code>:</strong> When checking if something is depleted, prefer <code>&lt;= 0</code>. If a value somehow goes negative (e.g. from a large hit skipping past 0), <code>== 0</code> would never trigger. <code>&lt;= 0</code> is the defensive, correct choice.</li>
+<li><strong>Dot notation on the parameter:</strong> Because <code>target</code> is a full object, you have access to all its attributes and methods — <code>target.name</code>, <code>target.health</code>, <code>target.take_hit()</code>, etc. Same dot notation, different object.</li>
+</ul>
+<hr>
+<h3 id="object-composition-has-a-vs-is-a">Object Composition (has-a vs. is-a)</h3>
+<p>Objects can contain other objects as attributes. This is called <strong>composition</strong> — distinct from inheritance.</p>
+<ul>
+<li><strong>is-a</strong> → inheritance (a <code>Dragon</code> <em>is a</em> <code>Monster</code>)</li>
+<li><strong>has-a</strong> → composition (a <code>Library</code> <em>has</em> <code>Book</code>s)</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Book</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, title, author)</span>:</span>
+        self.title = title
+        self.author = author
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Library</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, name)</span>:</span>
+        self.name = name
+        self.books = []          <span class="hljs-comment"># Library "has" Books — stored in a list</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add_book</span><span class="hljs-params">(self, book)</span>:</span>
+        self.books.append(book)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">remove_book</span><span class="hljs-params">(self, book)</span>:</span>
+        <span class="hljs-comment"># Build a new list excluding the match — safer than removing during iteration</span>
+        <span class="hljs-comment"># (mutating a list while looping over it causes skipped elements)</span>
+        new_books = []
+        <span class="hljs-keyword">for</span> b <span class="hljs-keyword">in</span> self.books:
+            <span class="hljs-keyword">if</span> b.title == book.title <span class="hljs-keyword">and</span> b.author == book.author:
+                <span class="hljs-keyword">continue</span>
+            new_books.append(b)
+        self.books = new_books
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">search_books</span><span class="hljs-params">(self, search_string)</span>:</span>
+        matches = []
+        <span class="hljs-keyword">for</span> b <span class="hljs-keyword">in</span> self.books:
+            <span class="hljs-comment"># .lower() on both sides = case-insensitive comparison</span>
+            <span class="hljs-keyword">if</span> search_string.lower() <span class="hljs-keyword">in</span> b.title.lower() <span class="hljs-keyword">or</span> search_string.lower() <span class="hljs-keyword">in</span> b.author.lower():
+                matches.append(b)
+        <span class="hljs-keyword">return</span> matches
+</div></code></pre>
+<p><strong>List comprehension alternative</strong> — a more idiomatic Python way to filter a list into a new one:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># These two are equivalent:</span>
+
+<span class="hljs-comment"># Explicit loop version:</span>
+new_books = []
+<span class="hljs-keyword">for</span> b <span class="hljs-keyword">in</span> self.books:
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (b.title == book.title <span class="hljs-keyword">and</span> b.author == book.author):
+        new_books.append(b)
+
+<span class="hljs-comment"># List comprehension version (one line):</span>
+self.books = [b <span class="hljs-keyword">for</span> b <span class="hljs-keyword">in</span> self.books <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (b.title == book.title <span class="hljs-keyword">and</span> b.author == book.author)]
+</div></code></pre>
+<p>Read it as: <em>&quot;give me each <code>b</code> from <code>self.books</code>, but only if [condition].&quot;</em> Both are valid — the loop is more readable when starting out; the comprehension is more idiomatic once comfortable.</p>
+<hr>
+<h3 id="public-vs-private-attributes--methods">Public vs. Private Attributes &amp; Methods</h3>
+<p>By default, all class attributes and methods are <strong>public</strong> — accessible from anywhere. Prefix with <code>__</code> (double underscore) to make them <strong>private</strong>, restricting access to inside the class only.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Wall</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, armor, magic_resistance)</span>:</span>
+        self.__armor = armor                    <span class="hljs-comment"># private</span>
+        self.__magic_resistance = magic_resistance  <span class="hljs-comment"># private</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_defense</span><span class="hljs-params">(self)</span>:</span>                      <span class="hljs-comment"># public method exposing private data</span>
+        <span class="hljs-keyword">return</span> self.__armor + self.__magic_resistance
+
+front_wall = Wall(<span class="hljs-number">10</span>, <span class="hljs-number">20</span>)
+front_wall.__armor        <span class="hljs-comment"># ❌ AttributeError — can't access from outside</span>
+front_wall.get_defense()  <span class="hljs-comment"># ✅ 30</span>
+</div></code></pre>
+<p>Private attributes are still accessible <em>inside</em> the class via <code>self.__attr</code> — just not from outside. This is <strong>encapsulation</strong> in practice: hide the internals, expose a controlled interface.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Wizard</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, name, stamina, intelligence)</span>:</span>
+        self.name = name                          <span class="hljs-comment"># public</span>
+        self.__stamina = stamina                  <span class="hljs-comment"># private</span>
+        self.__intelligence = intelligence        <span class="hljs-comment"># private</span>
+        self.health = <span class="hljs-number">100</span> * self.__stamina        <span class="hljs-comment"># public, derived from private</span>
+        self.mana = <span class="hljs-number">10</span> * self.__intelligence      <span class="hljs-comment"># public, derived from private</span>
+</div></code></pre>
+<blockquote>
+<p><strong>Note:</strong> prefer referencing <code>self.__attr</code> over the raw constructor parameter when computing derived values. If the setter ever transforms the value before storing it, <code>self.__attr</code> picks up that transformation — the raw parameter would bypass it.</p>
+</blockquote>
+<p><strong>When to use private?</strong> Any internal data that outside code shouldn't directly read or modify. Expose it through methods (getters/setters) if access is needed — that way you control how it's used.</p>
+<hr>
+<h3 id="exception-types--using-the-right-one">Exception Types — Using the Right One</h3>
+<p>Python has a hierarchy of built-in exception types. Using the right one makes code more precise and useful to callers.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">"cannot deposit zero or negative funds"</span>)  <span class="hljs-comment"># bad input value</span>
+<span class="hljs-keyword">raise</span> TypeError(<span class="hljs-string">"expected an int"</span>)                         <span class="hljs-comment"># wrong type</span>
+<span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">"something went wrong"</span>)                    <span class="hljs-comment"># generic fallback</span>
+</div></code></pre>
+<p><code>ValueError</code> = the value passed in is inappropriate for the operation. Prefer it over the generic <code>Exception</code> when input validation fails — callers can catch it specifically if needed.</p>
+<h3 id="input-validation-ordering">Input Validation Ordering</h3>
+<p>Validate inputs <em>before</em> checking business logic. This keeps the happy path clean and easy to follow:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># ❌ Fragile — business logic check wraps the input check</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">withdraw</span><span class="hljs-params">(self, amount)</span>:</span>
+    <span class="hljs-keyword">if</span> self.__balance &gt;= amount:
+        <span class="hljs-keyword">if</span> amount &lt;= <span class="hljs-number">0</span>:
+            <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">"cannot withdraw zero or negative funds"</span>)
+        self.__balance -= amount
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">"insufficient funds"</span>)
+
+<span class="hljs-comment"># ✅ Clear — guards run top to bottom, action only runs if all pass</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">withdraw</span><span class="hljs-params">(self, amount)</span>:</span>
+    <span class="hljs-keyword">if</span> amount &lt;= <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">"cannot withdraw zero or negative funds"</span>)
+    <span class="hljs-keyword">if</span> self.__balance &lt; amount:
+        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">"insufficient funds"</span>)
+    self.__balance -= amount
+</div></code></pre>
+<h3 id="max-and-min-as-guards"><code>max()</code> and <code>min()</code> as Guards</h3>
+<p>A clean way to clamp a value so it never goes below (or above) a threshold:</p>
+<pre class="hljs"><code><div>self.health -= max(<span class="hljs-number">0</span>, fireball_damage - self.__stamina)
+<span class="hljs-comment"># ensures damage is never negative — high stamina resists fully rather than healing</span>
+</div></code></pre>
+<p>Similarly, <code>min()</code> can cap a value from above:</p>
+<pre class="hljs"><code><div>self.health = min(self.health + heal_amount, self.max_health)
+<span class="hljs-comment"># ensures healing never exceeds the health cap</span>
+</div></code></pre>
+<hr>
+<h3 id="abstraction-with-private-helper-methods">Abstraction with Private Helper Methods</h3>
+<p>Private methods (prefixed <code>__</code>) aren't just for data — they're useful for hiding internal logic too. The public interface stays clean; the implementation details stay tucked away.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sprint_right</span><span class="hljs-params">(self)</span>:</span>
+    <span class="hljs-keyword">if</span> self.__stamina &lt;= <span class="hljs-number">0</span>:
+        self.__raise_if_cannot_sprint()   <span class="hljs-comment"># private helper</span>
+    self.__use_sprint_stamina()           <span class="hljs-comment"># private helper</span>
+    self.move_right()
+    self.move_right()
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__raise_if_cannot_sprint</span><span class="hljs-params">(self)</span>:</span>
+    <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">"not enough stamina to sprint"</span>)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__use_sprint_stamina</span><span class="hljs-params">(self)</span>:</span>
+    self.__stamina -= <span class="hljs-number">1</span>
+</div></code></pre>
+<h3 id="no-else-after-a-raise">No <code>else</code> After a <code>raise</code></h3>
+<p>Raising an exception immediately stops execution — so any code after an <code>if/raise</code> block only runs if the exception <em>wasn't</em> raised. The <code>else</code> is unnecessary:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># These are equivalent:</span>
+<span class="hljs-keyword">if</span> self.__stamina &lt;= <span class="hljs-number">0</span>:
+    <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">"not enough stamina"</span>)
+self.__use_sprint_stamina()   <span class="hljs-comment"># only runs if no exception was raised</span>
+
+<span class="hljs-comment"># vs. unnecessarily verbose:</span>
+<span class="hljs-keyword">if</span> self.__stamina &lt;= <span class="hljs-number">0</span>:
+    <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">"not enough stamina"</span>)
+<span class="hljs-keyword">else</span>:
+    self.__use_sprint_stamina()
+</div></code></pre>
+<p>Same principle applies after <code>return</code> — anything after a <code>return</code> in the same scope is unreachable.</p>
+<h3 id="dry--dont-repeat-yourself">DRY — Don't Repeat Yourself</h3>
+<p>If you're writing nearly identical code multiple times, that's a signal to refactor. One approach: pass a function as a parameter to a shared private helper.</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Instead of four nearly-identical sprint methods:</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__sprint</span><span class="hljs-params">(self, move_fn)</span>:</span>
+    <span class="hljs-keyword">if</span> self.__stamina &lt;= <span class="hljs-number">0</span>:
+        <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">"not enough stamina to sprint"</span>)
+    self.__stamina -= <span class="hljs-number">1</span>
+    move_fn()
+    move_fn()
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sprint_right</span><span class="hljs-params">(self)</span>:</span>
+    self.__sprint(self.move_right)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sprint_left</span><span class="hljs-params">(self)</span>:</span>
+    self.__sprint(self.move_left)
+</div></code></pre>
+<p>Functions can be passed as arguments in Python — <code>self.move_right</code> without parentheses is a reference to the function itself (not a call to it).</p>
+<hr>
+<h3 id="str--dunder-method-for-printing"><code>__str__</code> — Dunder Method for Printing</h3>
+<p><code>__str__</code> defines what a <code>print()</code> call on an object displays. Another dunder method (like <code>__init__</code>), it's Python's way of letting you customize built-in behavior for your own classes.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DeckOfCards</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__str__</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">f"The deck has <span class="hljs-subst">{len(self.__cards)}</span> cards"</span>
+
+deck = DeckOfCards()
+print(deck)   <span class="hljs-comment"># "The deck has 52 cards"</span>
+</div></code></pre>
+<p>Without <code>__str__</code>, <code>print(deck)</code> would show something like <code>&lt;__main__.DeckOfCards object at 0x...&gt;</code> — the default, useless representation.</p>
+<h3 id="repr--dunder-method-for-developers"><code>__repr__</code> — Dunder Method for Developers</h3>
+<p><code>__repr__</code> is <code>__str__</code>'s sibling. While <code>__str__</code> is the human-friendly display, <code>__repr__</code> is meant to be an unambiguous, developer-facing representation — ideally one that could recreate the object.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Rectangle</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__repr__</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">f"Rectangle(<span class="hljs-subst">{self.__x1}</span>, <span class="hljs-subst">{self.__y1}</span>, <span class="hljs-subst">{self.__x2}</span>, <span class="hljs-subst">{self.__y2}</span>)"</span>
+
+r = Rectangle(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>)
+repr(r)   <span class="hljs-comment"># "Rectangle(1, 2, 3, 4)"</span>
+</div></code></pre>
+<p>Quick rule of thumb: <code>__str__</code> = &quot;how should this look to a user?&quot;, <code>__repr__</code> = &quot;how would a developer recreate this?&quot;</p>
+<h3 id="nested-loops-for-combinations">Nested Loops for Combinations</h3>
+<p>To generate every combination of two lists, nest one loop inside the other:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> suit <span class="hljs-keyword">in</span> self.SUITS:
+    <span class="hljs-keyword">for</span> rank <span class="hljs-keyword">in</span> self.RANKS:
+        self.__cards.append((rank, suit))
+<span class="hljs-comment"># Produces all 52 (rank, suit) tuples in suit-major order</span>
+</div></code></pre>
+<h3 id="randomshuffle--in-place-shuffling"><code>random.shuffle()</code> — In-Place Shuffling</h3>
+<p><code>random.shuffle()</code> modifies the list directly — it does <strong>not</strong> return a new list.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> random
+random.shuffle(self.__cards)   <span class="hljs-comment"># ✅ shuffles in place</span>
+self.__cards = random.shuffle(self.__cards)   <span class="hljs-comment"># ❌ assigns None (common mistake)</span>
+</div></code></pre>
+<h3 id="returning-none-explicitly-vs-implicitly">Returning <code>None</code> Explicitly vs. Implicitly</h3>
+<p>A function that hits <code>return None</code> and a function that falls off the end without returning both produce <code>None</code> — but being explicit is clearer when <code>None</code> is a meaningful signal to the caller (e.g. &quot;deck is empty&quot;):</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">deal_card</span><span class="hljs-params">(self)</span>:</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> self.__cards:   <span class="hljs-comment"># empty list is falsy</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>
+    <span class="hljs-keyword">return</span> self.__cards.pop()
+</div></code></pre>
+<hr>
+<hr>
+<h2 id="inheritance">Inheritance</h2>
+<p>A child class can <strong>inherit</strong> from a parent class, gaining access to its public methods and attributes while adding its own.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Human</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, name)</span>:</span>
+        self.__name = name       <span class="hljs-comment"># private to Human</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_name</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> self.__name
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Archer</span><span class="hljs-params">(Human)</span>:</span>             <span class="hljs-comment"># Archer inherits from Human</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, name, num_arrows)</span>:</span>
+        super().__init__(name)   <span class="hljs-comment"># call parent constructor first</span>
+        self.__num_arrows = num_arrows
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_num_arrows</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> self.__num_arrows
+</div></code></pre>
+<p><strong>Key syntax:</strong></p>
+<ul>
+<li><code>class Child(Parent):</code> — declare inheritance in the class definition</li>
+<li><code>super().__init__(...)</code> — calls the parent's constructor; lets the parent set up its own private state</li>
+</ul>
+<p><strong>Private attributes don't cross class boundaries.</strong> Even though <code>Archer</code> inherits from <code>Human</code>, it cannot access <code>Human</code>'s <code>__name</code> directly — private means private to <em>that class</em>. <code>super().__init__()</code> is how you let the parent handle its own internals.</p>
+<hr>
+<h3 id="self--when-it-appears-and-when-it-doesnt"><code>self</code> — When It Appears and When It Doesn't</h3>
+<p><code>self</code> belongs in method <strong>definitions</strong>, never in method <strong>calls</strong>. Python passes the object reference automatically at call time.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">use_arrows</span><span class="hljs-params">(self, num)</span>:</span>   <span class="hljs-comment"># definition — self is explicit</span>
+    self.__num_arrows -= num
+
+self.use_arrows(<span class="hljs-number">3</span>)           <span class="hljs-comment"># call — no self, just the actual arguments</span>
+target.get_name()            <span class="hljs-comment"># call on another object — same rule</span>
+</div></code></pre>
+<p>Under the hood, <code>self.use_arrows(3)</code> is Python doing <code>Archer.use_arrows(self, 3)</code> for you.</p>
+<h3 id="inheritance-chains">Inheritance Chains</h3>
+<p>Inheritance can chain multiple levels deep. A grandchild class inherits from the full chain:</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Human</span>:</span>      ...         <span class="hljs-comment"># get_name()</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Archer</span><span class="hljs-params">(Human)</span>:</span>   ...    <span class="hljs-comment"># use_arrows(), get_num_arrows()</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Crossbowman</span><span class="hljs-params">(Archer)</span>:</span> ...<span class="hljs-comment"># triple_shot()</span>
+
+bolt = Crossbowman(<span class="hljs-string">"William"</span>, <span class="hljs-number">30</span>)
+bolt.get_name()      <span class="hljs-comment"># ✅ inherited from Human</span>
+bolt.use_arrows(<span class="hljs-number">3</span>)   <span class="hljs-comment"># ✅ inherited from Archer</span>
+bolt.triple_shot(target)  <span class="hljs-comment"># ✅ defined on Crossbowman</span>
+</div></code></pre>
+<p>Every <code>Crossbowman</code> is also an <code>Archer</code> and also a <code>Human</code>.</p>
+<hr>
+<h3 id="polymorphism--method-overriding">Polymorphism — Method Overriding</h3>
+<p><strong>Core idea:</strong> different classes can share the same method name but behave differently. Code that calls the method doesn't need to know which specific class it's dealing with — it just works.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Unit</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">in_area</span><span class="hljs-params">(self, x1, y1, x2, y2)</span>:</span>
+        <span class="hljs-comment"># simple point check — is the unit's center inside the box?</span>
+        <span class="hljs-keyword">return</span> (
+            self.pos_x &gt;= x1 <span class="hljs-keyword">and</span> self.pos_x &lt;= x2
+            <span class="hljs-keyword">and</span> self.pos_y &gt;= y1 <span class="hljs-keyword">and</span> self.pos_y &lt;= y2
+        )
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dragon</span><span class="hljs-params">(Unit)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">in_area</span><span class="hljs-params">(self, x1, y1, x2, y2)</span>:</span>
+        <span class="hljs-comment"># override — uses full rectangle hit box instead of a single point</span>
+        area = Rectangle(x1, y1, x2, y2)
+        <span class="hljs-keyword">return</span> area.overlaps(self.__hit_box)
+</div></code></pre>
+<p>The <code>Dragon</code> class <strong>overrides</strong> the parent's <code>in_area</code> with its own version. Any code calling <code>some_unit.in_area(...)</code> works the same whether it's a basic <code>Unit</code> or a <code>Dragon</code> — that's polymorphism in action.</p>
+<hr>
+<h3 id="operator-overloading--add">Operator Overloading — <code>__add__</code></h3>
+<p>Dunder methods let you define how operators behave on your custom classes. <code>__add__</code> controls the <code>+</code> operator.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sword</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, sword_type)</span>:</span>
+        self.sword_type = sword_type
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__add__</span><span class="hljs-params">(self, other)</span>:</span>
+        <span class="hljs-keyword">if</span> self.sword_type == <span class="hljs-string">"bronze"</span> <span class="hljs-keyword">and</span> other.sword_type == <span class="hljs-string">"bronze"</span>:
+            <span class="hljs-keyword">return</span> Sword(<span class="hljs-string">"iron"</span>)
+        <span class="hljs-keyword">if</span> self.sword_type == <span class="hljs-string">"iron"</span> <span class="hljs-keyword">and</span> other.sword_type == <span class="hljs-string">"iron"</span>:
+            <span class="hljs-keyword">return</span> Sword(<span class="hljs-string">"steel"</span>)
+        <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">"cannot craft"</span>)
+
+iron_sword = Sword(<span class="hljs-string">"bronze"</span>) + Sword(<span class="hljs-string">"bronze"</span>)   <span class="hljs-comment"># Sword("iron")</span>
+</div></code></pre>
+<p>Under the hood, <code>a + b</code> calls <code>a.__add__(b)</code> — the <strong>left</strong> object's <code>__add__</code> runs, with the right object passed as <code>other</code>.</p>
+<p><strong>Order matters.</strong> <code>5 + pouch</code> calls <code>int.__add__(5, pouch)</code> — and <code>int</code> has no idea what a <code>Pouch</code> is, so it fails. To support swapped order, implement <code>__radd__</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__radd__</span><span class="hljs-params">(self, other)</span>:</span>
+    <span class="hljs-keyword">return</span> self.__add__(other)    <span class="hljs-comment"># Python tries this if the left side's __add__ fails</span>
+</div></code></pre>
+<p><strong>Full operator overloading reference:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Operator</th>
+<th>Dunder Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Addition</td>
+<td><code>+</code></td>
+<td><code>__add__</code></td>
+</tr>
+<tr>
+<td>Subtraction</td>
+<td><code>-</code></td>
+<td><code>__sub__</code></td>
+</tr>
+<tr>
+<td>Multiplication</td>
+<td><code>*</code></td>
+<td><code>__mul__</code></td>
+</tr>
+<tr>
+<td>Power</td>
+<td><code>**</code></td>
+<td><code>__pow__</code></td>
+</tr>
+<tr>
+<td>Division</td>
+<td><code>/</code></td>
+<td><code>__truediv__</code></td>
+</tr>
+<tr>
+<td>Floor Division</td>
+<td><code>//</code></td>
+<td><code>__floordiv__</code></td>
+</tr>
+<tr>
+<td>Remainder (modulo)</td>
+<td><code>%</code></td>
+<td><code>__mod__</code></td>
+</tr>
+<tr>
+<td>Bitwise Left Shift</td>
+<td><code>&lt;&lt;</code></td>
+<td><code>__lshift__</code></td>
+</tr>
+<tr>
+<td>Bitwise Right Shift</td>
+<td><code>&gt;&gt;</code></td>
+<td><code>__rshift__</code></td>
+</tr>
+<tr>
+<td>Bitwise AND</td>
+<td><code>&amp;</code></td>
+<td><code>__and__</code></td>
+</tr>
+<tr>
+<td>Bitwise OR</td>
+<td><code>\|</code></td>
+<td><code>__or__</code></td>
+</tr>
+<tr>
+<td>Bitwise XOR</td>
+<td><code>^</code></td>
+<td><code>__xor__</code></td>
+</tr>
+<tr>
+<td>Bitwise NOT</td>
+<td><code>~</code></td>
+<td><code>__invert__</code></td>
+</tr>
+</tbody>
+</table>
+<p>Same pattern for all of them — define the dunder method on your class, and the corresponding operator just works on your objects.</p>
+<h3 id="isinstance--type-checking"><code>isinstance()</code> — Type Checking</h3>
+<p>When an operator needs to handle different types coming in, <code>isinstance()</code> checks what kind of object you're dealing with:</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__add__</span><span class="hljs-params">(self, other)</span>:</span>
+    <span class="hljs-keyword">if</span> isinstance(other, int):
+        <span class="hljs-keyword">return</span> Pouch(self.gold + other)       <span class="hljs-comment"># Pouch + int</span>
+    <span class="hljs-keyword">if</span> isinstance(other, Pouch):
+        <span class="hljs-keyword">return</span> Pouch(self.gold + other.gold)  <span class="hljs-comment"># Pouch + Pouch</span>
+    <span class="hljs-keyword">raise</span> TypeError(<span class="hljs-string">"unsupported type"</span>)
+</div></code></pre>
+<h3 id="comparison-operator-overloading">Comparison Operator Overloading</h3>
+<p>Same pattern as arithmetic operators — define the dunder method, and the comparison operator works on your objects:</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Operator</th>
+<th>Dunder Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Equal</td>
+<td><code>==</code></td>
+<td><code>__eq__</code></td>
+</tr>
+<tr>
+<td>Not Equal</td>
+<td><code>!=</code></td>
+<td><code>__ne__</code></td>
+</tr>
+<tr>
+<td>Less Than</td>
+<td><code>&lt;</code></td>
+<td><code>__lt__</code></td>
+</tr>
+<tr>
+<td>Greater Than</td>
+<td><code>&gt;</code></td>
+<td><code>__gt__</code></td>
+</tr>
+<tr>
+<td>Less or Equal</td>
+<td><code>&lt;=</code></td>
+<td><code>__le__</code></td>
+</tr>
+<tr>
+<td>Greater or Equal</td>
+<td><code>&gt;=</code></td>
+<td><code>__ge__</code></td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Card</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, rank, suit)</span>:</span>
+        self.rank = rank
+        self.suit = suit
+        self.rank_index = RANKS.index(rank)    <span class="hljs-comment"># .index() returns position in a list</span>
+        self.suit_index = SUITS.index(suit)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__eq__</span><span class="hljs-params">(self, other)</span>:</span>
+        <span class="hljs-keyword">return</span> self.rank_index == other.rank_index <span class="hljs-keyword">and</span> self.suit_index == other.suit_index
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__lt__</span><span class="hljs-params">(self, other)</span>:</span>
+        <span class="hljs-keyword">return</span> self.rank_index &lt; other.rank_index <span class="hljs-keyword">or</span> (
+            self.rank_index == other.rank_index <span class="hljs-keyword">and</span>
+            self.suit_index &lt; other.suit_index
+        )
+</div></code></pre>
+<p><strong><code>.index()</code> on lists</strong> — returns the position of an element. Handy for turning string values into comparable numbers:</p>
+<pre class="hljs"><code><div>[<span class="hljs-string">"Clubs"</span>, <span class="hljs-string">"Diamonds"</span>, <span class="hljs-string">"Hearts"</span>, <span class="hljs-string">"Spades"</span>].index(<span class="hljs-string">"Hearts"</span>)   <span class="hljs-comment"># 2</span>
+</div></code></pre>
+<hr>
+<h3 id="notimplementederror--enforcing-overrides"><code>NotImplementedError</code> — Enforcing Overrides</h3>
+<p>A parent class can use <code>NotImplementedError</code> to say &quot;subclasses <em>must</em> override this method.&quot; If they forget, they get an explicit error instead of silent wrong behavior:</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Round</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_round</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">raise</span> NotImplementedError(<span class="hljs-string">"Subclasses must implement resolve_round()"</span>)
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HighCardRound</span><span class="hljs-params">(Round)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_round</span><span class="hljs-params">(self)</span>:</span>       <span class="hljs-comment"># override — this is required</span>
+        ...
+</div></code></pre>
+<hr>
+<h3 id="booleans-are-integers">Booleans Are Integers</h3>
+<p>In Python, <code>True</code> is <code>1</code> and <code>False</code> is <code>0</code> in arithmetic contexts. You can use this to collapse <code>if/elif/else</code> chains into a single expression:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># These are equivalent:</span>
+<span class="hljs-comment"># if/elif version:</span>
+<span class="hljs-keyword">if</span> card1 &gt; card2:
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+<span class="hljs-keyword">elif</span> card1 &lt; card2:
+    <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>
+<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+
+<span class="hljs-comment"># bool-as-int version:</span>
+<span class="hljs-keyword">return</span> (card1 &gt; card2) + <span class="hljs-number">2</span> * (card1 &lt; card2)
+</div></code></pre>
+<p>It's compact and clever, but the <code>if/elif</code> version is usually preferred in production code because the tie case (<code>0</code>) is explicit rather than implied by the math. Good trick to know, but readability wins in a team setting.</p>
+<hr>
+<p><em>Last updated: OOP course — polymorphism chapter complete ✅</em></p>
+
+</body>
+</html>
